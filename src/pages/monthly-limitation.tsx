@@ -9,9 +9,11 @@ import { CategoryExpenseTableComponent } from '../components/tables/category-exp
 import { CategoryExpenseRow } from '../interfaces/category-expense-row';
 import { MonthlyLimitationTableComponent } from '../components/tables/monthly-limitation-table';
 import { MonthlyLimitationRow } from '../interfaces/monthly-limitation-row';
+import { LinenearProgressLoading } from '../components/common/common-component';
 
 export const MonthlyLimitationPage = () => {
     const [monthlyLimitData, setMonthlyLimitData] = useState<Array<MonthlyLimitationRow>>([]);
+    const [isLoad, setIsLoad] = useState<boolean>(true);
     useEffect(() => {
         getOverviewExpense();
     }, []);
@@ -21,9 +23,11 @@ export const MonthlyLimitationPage = () => {
         if (response.data) {
             setMonthlyLimitData([...response.data])
         }
+        setIsLoad(false)
     }
     return (
         <Grid container spacing={2}>
+            <LinenearProgressLoading isLoad={isLoad} />
             <Grid item xs={12} md={12}>
                 <Typography variant="h5" style={{ fontWeight: "bold", marginTop: "8px" }}>
                     Monthly Limitation

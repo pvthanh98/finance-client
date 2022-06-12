@@ -10,9 +10,10 @@ import {
 import { ExpenseByCategoryPage } from './pages/expense-by-category';
 import { MonthlyLimitationPage } from './pages/monthly-limitation';
 import styles from './App.module.css'
+import { YearMonthlyPage } from './pages/monthly-year.page';
+import { DailyExpensePage } from './pages/daily-expense.page';
 
 function App() {
-
   return (
     <Router>
       <Container>
@@ -22,24 +23,25 @@ function App() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/expense-by-category">Expense By Category</Link>
+              <Link to="/expense-daily">Daily</Link>
             </li>
             <li>
-              <Link to="/monthly-limitation">Monthly Limitation</Link>
+              <Link to="/expense-by-category">Category</Link>
             </li>
             <li>
-              <Link to="/expense-by-month">Year By Month Expenses</Link>
+              <Link to="/monthly-limitation">Limit</Link>
             </li>
             <li>
-              <Link to="/expense-daily">Daily Expenses</Link>
+              <Link to="/expense-by-month">Year</Link>
             </li>
           </ul>
         </Grid>
-
         <Routes>
           <Route path="/" element={<OverviewPage />} />
           <Route path="/expense-by-category" element={<ExpenseByCategoryPage />} />
           <Route path="/monthly-limitation" element={<MonthlyLimitationPage />} />
+          <Route path="/expense-by-month" element={<YearMonthlyPage />} />
+          <Route path="/expense-daily" element={<DailyExpensePage />} />
         </Routes>
       </Container>
     </Router>

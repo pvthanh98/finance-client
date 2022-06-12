@@ -7,11 +7,13 @@ import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { CategoryExpenseTableComponent } from '../components/tables/category-expense-table';
 import { CategoryExpenseRow } from '../interfaces/category-expense-row';
+import { LinenearProgressLoading } from '../components/common/common-component';
 
 export const ExpenseByCategoryPage = () => {
     const [dailyData, setDailyData] = useState<Array<CategoryExpenseRow>>([]);
     const [monthlyData, setMonthly] = useState<Array<CategoryExpenseRow>>([]);
     const [yearlyData, setYearly] = useState<Array<CategoryExpenseRow>>([]);
+    const [isLoad, setIsLoad] = useState<boolean>(true);
 
     useEffect(() => {
         getOverviewExpense();
@@ -30,18 +32,11 @@ export const ExpenseByCategoryPage = () => {
             setYearly([...yearly])
         }
 
-        // if (remaining) {
-        //     const data: Array<OverviewRow> = convertOverviewData(remaining);
-        //     setRemaining([...data])
-        // }
-
-        // if (income) {
-        //     const data: Array<OverviewRow> = convertOverviewData(income);
-        //     setIncome([...data])
-        // }
+        setIsLoad(false)
     }
     return (
         <Grid container spacing={2}>
+            <LinenearProgressLoading isLoad={isLoad} />
             <Grid item xs={12} md={12}>
                 <Typography variant="h5" style={{ fontWeight: "bold", marginTop: "8px" }}>
                     Category Expenses

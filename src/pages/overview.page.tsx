@@ -5,11 +5,14 @@ import { convertOverviewData } from '../utils/util';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
+import LinearProgress from '@mui/material/LinearProgress'
+import { LinenearProgressLoading } from '../components/common/common-component';
 
 export const OverviewPage = () => {
     const [usageData, setUsageData] = useState<Array<OverviewRow>>([]);
     const [remaining, setRemaining] = useState<Array<OverviewRow>>([]);
     const [income, setIncome] = useState<Array<OverviewRow>>([]);
+    const [isLoad, setIsLoad] = useState<boolean>(true);
 
     useEffect(() => {
         getOverviewExpense();
@@ -33,9 +36,11 @@ export const OverviewPage = () => {
             const data: Array<OverviewRow> = convertOverviewData(income);
             setIncome([...data])
         }
+        setIsLoad(false)
     }
     return (
         <Grid container spacing={2}>
+            <LinenearProgressLoading isLoad={isLoad} />
             <Grid item xs={12} md={12}>
                 <Typography variant="h5" style={{ fontWeight: "bold", marginTop: "8px" }}>
                     Overview
@@ -46,6 +51,7 @@ export const OverviewPage = () => {
                     Usage
                 </Typography>
                 <TableComponent rows={usageData} />
+                
             </Grid>
             <Grid item xs={12} md={6}>
                 <Typography variant="h6" style={{ marginTop: "8px" }}>

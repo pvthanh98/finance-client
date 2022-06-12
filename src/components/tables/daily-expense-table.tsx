@@ -8,6 +8,7 @@ import Paper from '@mui/material/Paper';
 import { CurrencyFormat } from '../common/common-component';
 import { ExcelDateToJSDate } from '../../utils/util';
 import { DailyExpenseData } from '../../interfaces/daily-expense-row';
+const moment = require("moment")
 
 export function DailyExpenseTableComponent(props: DailyExpenseData) {
   return (
@@ -53,7 +54,8 @@ export function DailyExpenseTableComponent(props: DailyExpenseData) {
               }}
             >
               <TableCell align="left" component="th" scope="row">
-                {row.date}
+                {/* {row.date} */}
+                {moment(row.date).format("DD-MM-YYYY")}
               </TableCell>
               <TableCell align="left" component="th" scope="row">
                 {row.category}

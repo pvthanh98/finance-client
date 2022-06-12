@@ -34,6 +34,9 @@ function App() {
             <li>
               <Link to="/expense-by-month">Year</Link>
             </li>
+            <li>
+              <Link to="/income">Income</Link>
+            </li>
           </ul>
         </Grid>
         <Routes>
